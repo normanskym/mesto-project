@@ -2,6 +2,8 @@
 
 .header {
     padding: 45px 200px 0;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .header::after {
@@ -12,7 +14,7 @@
     padding-top: 40px;
 }
 
-@media screen and (max-width: 1279px) {
+@media screen and (max-width: 1023px) {
     .header {
         padding: 28px 27px 32px;
         border-bottom: 1px solid rgba(84, 84, 84, .7);
