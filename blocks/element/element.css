@@ -1,12 +1,6 @@
-@import url(./__picture/element__picture.css);
-@import url(./__container/element__container.css);
-@import url(./__text/element__text.css);
-@import url(./__like-button/element__like-button.css);
-
 .element {
     display: flex;
     width: 282px;
-    height: 361px;
     border-radius: 10px;
     background-color: white;
     flex-direction: column;

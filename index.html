@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Normansky Mikhail">
+    <meta name="author" content="Норманский Михаил">
     <meta name="description" content="Сервис для обмена фото">
     <link rel="stylesheet" href="./pages/index.css">
     <title>Mesto</title>
@@ -17,11 +17,11 @@
         <section class="profile">
             <img class="profile__avatar" title="Аватар" src="./images/avatar.jpg" alt="Аватар">
             <div class="profile__info">
-                <h1 class="profile__name" id="profile__name">Жак-Ив Кусто</h1>
-                <p class="profile__job" id="profile__job">Исследователь океана</p>
-                <button class="profile__edit-button" title="Редактировать профиль"></button>
+                <h1 class="profile__name">Жак Ив Кусто</h1>
+                <p class="profile__job">Исследователь океана</p>
+                <button class="profile__edit-button" title="Редактировать профиль" type="button"></button>
             </div>
-            <button class="profile__add-button" title="Добавить профиль"></button>
+            <button class="profile__add-button" title="Добавить профиль" type="button"></button>
         </section>
         <section class="elements">
             <ul class="elements__list">
@@ -29,42 +29,42 @@
                     <img class="element__picture" src="./images/element__picture-1.jpg" title="Посмотреть фото" alt="добавленная картинка">
                     <div class="element__container">
                         <h2 class="element__text">Карачаевск</h2>
-                        <button class="element__like-button" type="button"></button>
+                        <button class="element__like-button" type="button" aria-label="Нравится"></button>
                     </div>
                 </li>
                 <li class="element">
                     <img class="element__picture" src="./images/element__picture-2.jpg" title="Посмотреть фото" alt="добавленная картинка">
                     <div class="element__container">
                         <h2 class="element__text">Гора Эльбрус</h2>
-                        <button class="element__like-button" type="button"></button>
+                        <button class="element__like-button" type="button" aria-label="Нравится"></button>
                     </div>
                 </li>
                 <li class="element">
                     <img class="element__picture" src="./images/element__picture-3.jpg" title="Посмотреть фото" alt="добавленная картинка">
                     <div class="element__container">
                         <h2 class="element__text">Домбай</h2>
-                        <button class="element__like-button" type="button"></button>
+                        <button class="element__like-button" type="button" aria-label="Нравится"></button>
                     </div>
                 </li>
                 <li class="element">
                     <img class="element__picture" src="./images/element__picture-2.jpg" title="Посмотреть фото" alt="добавленная картинка">
                     <div class="element__container">
                         <h2 class="element__text">Гора Эльбрус</h2>
-                        <button class="element__like-button" type="button"></button>
+                        <button class="element__like-button" type="button" aria-label="Нравится"></button>
                     </div>
                 </li>
                 <li class="element">
                     <img class="element__picture" src="./images/element__picture-3.jpg" title="Посмотреть фото" alt="добавленная картинка">
                     <div class="element__container">
                         <h2 class="element__text">Домбай</h2>
-                        <button class="element__like-button" type="button"></button>
+                        <button class="element__like-button" type="button" aria-label="Нравится"></button>
                     </div>
                 </li>
                 <li class="element">
                     <img class="element__picture" src="./images/element__picture-1.jpg" title="Посмотреть фото" alt="добавленная картинка">
                     <div class="element__container">
                         <h2 class="element__text">Карачаево-Черкессия</h2>
-                        <button class="element__like-button" type="button"></button>
+                        <button class="element__like-button" type="button" aria-label="Нравится"></button>
                     </div>
                 </li>
             </ul>
@@ -73,21 +73,23 @@
     <footer class="footer">
         <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
     </footer>
-    <div class="popup popup_opened">
-        <form class="popup__container" name="profile">
-          <fieldset class="popup__fieldset">
-            <p class="popup__title">Редактировать профиль</p>
-            <label class="popup__form-field">
-              <input class="popup__input" name="name" placeholder="Имя" id="popup__name-input" type="text">
-            </label>
-            <label class="popup__form-field">
-              <input class="popup__input" name="job" placeholder="Профессия" id="popup__job-input" type="text">
-            </label>
-            <button class="popup__button" type="submit">Сохранить</button>
-          </fieldset>
+    <div class="popup">
+        <div class="popup__container">
           <button class="popup__close-button" type="button"></button>
-        </form>
+          <form class="popup__form" name="profile">
+            <fieldset class="popup__fieldset">
+              <h2 class="popup__title">Редактировать профиль</h2>
+              <label class="popup__form-field">
+                <input class="popup__input" name="name" placeholder="Имя" id="popup__name-input" type="text">
+              </label>
+              <label class="popup__form-field">
+                <input class="popup__input" name="job" placeholder="Профессия" id="popup__job-input" type="text">
+              </label>
+              <button class="popup__button" type="submit">Сохранить</button>
+            </fieldset>
+          </form>
+        </div>
         <div class="popup__overlay"></div>
-      </div>
+    </div>
 </body>
 </html>
