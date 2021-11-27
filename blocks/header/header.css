@@ -14,9 +14,8 @@
 
 @media screen and (max-width: 1023px) {
     .header {
-        padding: 28px 0 31.6px 27px;
+        padding: 28px 0 28.6px 27px;
         border-bottom: 1px solid rgba(84, 84, 84, .7);
-        height: 85px;
     }
 
     .header::after {
