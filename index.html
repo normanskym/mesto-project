@@ -17,7 +17,7 @@
         <section class="profile">
             <img class="profile__avatar" title="Аватар" src="./images/avatar.jpg" alt="Аватар">
             <div class="profile__info">
-                <h1 class="profile__name">Жак Ив Кусто</h1>
+                <h1 class="profile__name">Жак-Ив Кусто</h1>
                 <p class="profile__job">Исследователь океана</p>
                 <button class="profile__edit-button" title="Редактировать профиль" type="button"></button>
             </div>
@@ -25,7 +25,7 @@
         </section>
         <section class="elements">
             <ul class="elements__list">
-                <li class="element">
+                <!--<li class="element">
                     <img class="element__picture" src="./images/element__picture-1.jpg" title="Посмотреть фото" alt="добавленная картинка">
                     <div class="element__container">
                         <h2 class="element__text">Карачаевск</h2>
@@ -66,17 +66,18 @@
                         <h2 class="element__text">Карачаево-Черкессия</h2>
                         <button class="element__like-button" type="button" aria-label="Нравится"></button>
                     </div>
-                </li>
+                </li> -->
             </ul>
         </section>
     </main>
     <footer class="footer">
         <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
     </footer>
-    <div class="popup">
+    <!--Попап редактирования профиля-->
+    <div class="popup" id="editProfile">
         <div class="popup__container">
-          <button class="popup__close-button" type="button"></button>
-          <form class="popup__form" name="profile">
+          <button class="popup__close-button" id="popupEditProfileCloseButton" type="button"></button>
+          <form class="popup__form" name="editProfile">
             <fieldset class="popup__fieldset">
               <h2 class="popup__title">Редактировать профиль</h2>
               <label class="popup__form-field">
@@ -85,10 +86,51 @@
               <label class="popup__form-field">
                 <input class="popup__input" name="job" placeholder="Профессия" id="popup__job-input" type="text">
               </label>
-              <button class="popup__button" type="submit">Сохранить</button>
+              <button class="popup__submit-button" type="submit" id="popup__editProfileSubmit-button">Сохранить</button>
             </fieldset>
           </form>
         </div>
     </div>
+    <!--Попап добавления карточки-->
+    <div class="popup" id="addCard">
+        <div class="popup__container">
+          <button class="popup__close-button" id="popupAddCardCloseButton" type="button"></button>
+          <form class="popup__form" name="newCard">
+            <fieldset class="popup__fieldset">
+              <h2 class="popup__title">Новое место</h2>
+              <label class="popup__form-field">
+                <input class="popup__input" name="placeName" placeholder="Название карточки" id="popup__placeName-input" type="text">
+              </label>
+              <label class="popup__form-field">
+                <input class="popup__input" name="placeLink" placeholder="Ссылка на картинку" id="popup__placeLink-input" type="text">
+              </label>
+              <button class="popup__submit-button" type="submit" id="popup__addCardSubmit-button">Создать</button>
+            </fieldset>
+          </form>
+        </div>
+    </div>
+    <!--Попап открытия фото-->
+    <div class="popup" id="openImage">
+        <div class="popup__fullscreen">
+            <div class="popup__image-description">
+                <img class="popup__image" src="#" alt="Фото">
+                <p class="popup__image-text"></p>
+                <button class="popup__close-button" type="button"></button>
+            </div>
+        </div>
+    </div>
+    <ul class="elements__list">
+    </ul>
+    <template class="card-template">
+        <li class="element">
+            <img class="element__picture">
+            <button class="element__trash-button" type="button"></button>
+            <div class="element__container">
+                <h2 class="element__text"></h2>
+                <button class="element__like-button" type="button"></button>
+            </div>
+        </li>
+    </template>
+    <script src ='./pages/index.js'></script>
 </body>
 </html>
