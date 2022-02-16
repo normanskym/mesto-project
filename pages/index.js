@@ -11,8 +11,11 @@ const profileJob = document.querySelector('.profile__job');
 const placeNameInput = document.getElementById('popup__placeName-input');
 const placeLinkInput = document.getElementById('popup__placeLink-input');
 const addSubmitButton = document.getElementById('popup__addCardSubmit-button');
-const elementsList = document.querySelector('.elements__list'); // Контейнер карточек
-const cardTemplate = document.querySelector('.card-template').content; // Шаблон карточки
+const elementsList = document.querySelector('.elements__list');
+const cardTemplate = document.querySelector('.card-template').content;
+const popupImage = document.getElementById('openImage');
+const popupImagePic = document.querySelector('.popup__image');
+const popupImageText = document.querySelector('.popup__image-text');
 const initialCards = [
   {
     name: 'Архыз',
@@ -41,8 +44,8 @@ const initialCards = [
 ];
 
 function createCard(name, link) {
-  const createdCard = cardTemplate.querySelector('.element').cloneNode(true); // Карточка, склонированная из шаблона
-  const removeCardBtn = createdCard.querySelector('.element__trash-button'); // Кнопка удаления карточки
+  const createdCard = cardTemplate.querySelector('.element').cloneNode(true);
+  const removeCardBtn = createdCard.querySelector('.element__trash-button');
   const likeBtn = createdCard.querySelector('.element__like-button');
   const cardName = createdCard.querySelector('.element__text');
   const cardImg = createdCard.querySelector('.element__picture');
@@ -68,7 +71,7 @@ function removeCard(event) {
 const newCards = initialCards.map((place) => {
   return createCard(place.name, place.link);
 });
-elementsList.append(...newCards);
+elementsList.append(...newCards);//РАЗОБРАТЬ
 
 function PopupOpen(popup) {
   popup.classList.add('popup_opened');
@@ -80,8 +83,8 @@ popupCloseButtons.forEach(function(btn){
   })
 })
 
-nameInput.setAttribute('value', profileName.textContent);
-jobInput.setAttribute('value', profileJob.textContent);
+//nameInput.setAttribute('value', profileName.textContent);
+//jobInput.setAttribute('value', profileJob.textContent); РАЗОБРАТЬСЯ, почему работает без этого
 
 nameInput.value = profileName.textContent;
 jobInput.value = profileJob.textContent;
@@ -106,3 +109,11 @@ profileEditButton.addEventListener('click', () => PopupOpen(popupEditProfile));
 editSubmitButton.addEventListener('click', EditProfileSubmitHandler);
 profileAddButton.addEventListener('click', () => PopupOpen(popupAddCard));
 addSubmitButton.addEventListener('click', AddCardSubmitHandler);
+document.body.addEventListener('click', (event) => {
+  const pic = event.target.closest('.element__picture');
+  if (pic) {
+    PopupOpen(popupImage);
+    popupImagePic.setAttribute('src', pic.getAttribute('src'));
+    popupImageText.textContent = pic.getAttribute('alt');
+  }
+});

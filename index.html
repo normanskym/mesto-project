@@ -24,49 +24,8 @@
             <button class="profile__add-button" title="Добавить профиль" type="button"></button>
         </section>
         <section class="elements">
+            <!--Контейнер карточек-->
             <ul class="elements__list">
-                <!--<li class="element">
-                    <img class="element__picture" src="./images/element__picture-1.jpg" title="Посмотреть фото" alt="добавленная картинка">
-                    <div class="element__container">
-                        <h2 class="element__text">Карачаевск</h2>
-                        <button class="element__like-button" type="button" aria-label="Нравится"></button>
-                    </div>
-                </li>
-                <li class="element">
-                    <img class="element__picture" src="./images/element__picture-2.jpg" title="Посмотреть фото" alt="добавленная картинка">
-                    <div class="element__container">
-                        <h2 class="element__text">Гора Эльбрус</h2>
-                        <button class="element__like-button" type="button" aria-label="Нравится"></button>
-                    </div>
-                </li>
-                <li class="element">
-                    <img class="element__picture" src="./images/element__picture-3.jpg" title="Посмотреть фото" alt="добавленная картинка">
-                    <div class="element__container">
-                        <h2 class="element__text">Домбай</h2>
-                        <button class="element__like-button" type="button" aria-label="Нравится"></button>
-                    </div>
-                </li>
-                <li class="element">
-                    <img class="element__picture" src="./images/element__picture-2.jpg" title="Посмотреть фото" alt="добавленная картинка">
-                    <div class="element__container">
-                        <h2 class="element__text">Гора Эльбрус</h2>
-                        <button class="element__like-button" type="button" aria-label="Нравится"></button>
-                    </div>
-                </li>
-                <li class="element">
-                    <img class="element__picture" src="./images/element__picture-3.jpg" title="Посмотреть фото" alt="добавленная картинка">
-                    <div class="element__container">
-                        <h2 class="element__text">Домбай</h2>
-                        <button class="element__like-button" type="button" aria-label="Нравится"></button>
-                    </div>
-                </li>
-                <li class="element">
-                    <img class="element__picture" src="./images/element__picture-1.jpg" title="Посмотреть фото" alt="добавленная картинка">
-                    <div class="element__container">
-                        <h2 class="element__text">Карачаево-Черкессия</h2>
-                        <button class="element__like-button" type="button" aria-label="Нравится"></button>
-                    </div>
-                </li> -->
             </ul>
         </section>
     </main>
@@ -97,14 +56,14 @@
           <button class="popup__close-button" id="popupAddCardCloseButton" type="button"></button>
           <form class="popup__form" name="newCard">
             <fieldset class="popup__fieldset">
-              <h2 class="popup__title">Новое место</h2>
+              <h2 class="popup__title">Обратный звонок</h2>
               <label class="popup__form-field">
                 <input class="popup__input" name="placeName" placeholder="Название карточки" id="popup__placeName-input" type="text">
               </label>
               <label class="popup__form-field">
                 <input class="popup__input" name="placeLink" placeholder="Ссылка на картинку" id="popup__placeLink-input" type="text">
               </label>
-              <button class="popup__submit-button" type="submit" id="popup__addCardSubmit-button">Создать</button>
+              <button class="popup__submit-button" type="submit" id="popup__addCardSubmit-button">Отправить</button>
             </fieldset>
           </form>
         </div>
@@ -121,9 +80,10 @@
     </div>
     <ul class="elements__list">
     </ul>
+    <!--Шаблон карточки-->
     <template class="card-template">
         <li class="element">
-            <img class="element__picture">
+            <img class="element__picture" src="#" alt="Фото">
             <button class="element__trash-button" type="button"></button>
             <div class="element__container">
                 <h2 class="element__text"></h2>

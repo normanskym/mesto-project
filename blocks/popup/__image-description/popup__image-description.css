@@ -1,6 +1,5 @@
 .popup__image-description {
     z-index: 4;
-    display: flex;
     position: relative;
     max-width: 75vw;
     padding: 0;
