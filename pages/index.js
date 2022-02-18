@@ -84,7 +84,7 @@ popupCloseButtons.forEach(function(btn){
 })
 
 //nameInput.setAttribute('value', profileName.textContent);
-//jobInput.setAttribute('value', profileJob.textContent); РАЗОБРАТЬСЯ, почему работает без этого
+//jobInput.setAttribute('value', profileJob.textContent);
 
 nameInput.value = profileName.textContent;
 jobInput.value = profileJob.textContent;
