@@ -33,48 +33,48 @@
         <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
     </footer>
     <!--Попап редактирования профиля-->
-    <div class="popup" id="editProfile">
+    <div class="popup popup_editProfile">
         <div class="popup__container">
-          <button class="popup__close-button" id="popupEditProfileCloseButton" type="button"></button>
-          <form class="popup__form" name="editProfile">
+          <button class="popup__close-button popup_editProfile__close-button" id="popupEditProfileCloseButton" type="button"></button>
+          <form class="popup__form popup__form_editProfile" name="editProfile">
             <fieldset class="popup__fieldset">
               <h2 class="popup__title">Редактировать профиль</h2>
               <label class="popup__form-field">
-                <input class="popup__input" name="name" placeholder="Имя" id="popup__name-input" type="text">
+                <input class="popup__input popup__name-input" name="name" placeholder="Имя" type="text">
               </label>
               <label class="popup__form-field">
-                <input class="popup__input" name="job" placeholder="Профессия" id="popup__job-input" type="text">
+                <input class="popup__input popup__job-input" name="job" placeholder="Профессия" type="text">
               </label>
-              <button class="popup__submit-button" type="submit" id="popup__editProfileSubmit-button">Сохранить</button>
+              <button class="popup__submit-button popup__editProfileSubmit-button" type="submit">Сохранить</button>
             </fieldset>
           </form>
         </div>
     </div>
     <!--Попап добавления карточки-->
-    <div class="popup" id="addCard">
+    <div class="popup popup_addCard">
         <div class="popup__container">
-          <button class="popup__close-button" id="popupAddCardCloseButton" type="button"></button>
-          <form class="popup__form" name="newCard">
+          <button class="popup__close-button popup_addCard__close-button" id="popupAddCardCloseButton" type="button"></button>
+          <form class="popup__form popup__form_addCard" name="newCard">
             <fieldset class="popup__fieldset">
               <h2 class="popup__title">Новое место</h2>
               <label class="popup__form-field">
-                <input class="popup__input" name="placeName" placeholder="Название карточки" id="popup__placeName-input" type="text">
+                <input class="popup__input popup__placeName-input" name="placeName" placeholder="Название карточки" type="text">
               </label>
               <label class="popup__form-field">
-                <input class="popup__input" name="placeLink" placeholder="Ссылка на картинку" id="popup__placeLink-input" type="text">
+                <input class="popup__input popup__placeLink-input" name="placeLink" placeholder="Ссылка на картинку" type="text">
               </label>
-              <button class="popup__submit-button" type="submit" id="popup__addCardSubmit-button">Отправить</button>
+              <button class="popup__submit-button popup__addCardSubmit-button" type="submit">Отправить</button>
             </fieldset>
           </form>
         </div>
     </div>
     <!--Попап открытия фото-->
-    <div class="popup" id="openImage">
+    <div class="popup popup_openImage">
         <div class="popup__fullscreen">
             <div class="popup__image-description">
                 <img class="popup__image" src="#" alt="Фото">
                 <p class="popup__image-text"></p>
-                <button class="popup__close-button" type="button"></button>
+                <button class="popup__close-button popup_OpenImage__close-button" type="button"></button>
             </div>
         </div>
     </div>
