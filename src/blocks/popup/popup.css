@@ -10,3 +10,16 @@
     transition: all 0.2s linear;
     opacity: 0;
 }
+
+.popup__overlay {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+
+.popup__overlay:hover {
+    cursor: pointer;
+}

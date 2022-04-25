@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Норманский Михаил">
+    <meta name="description" content="Сервис для обмена фото">
+    <!--<link rel="stylesheet" href="./pages/index.css">-->
+    <title>Mesto</title>
+  </head>
+  <body class="page">
+    <header class="header">
+      <img class="header__logo" alt="логотип Mesto" src="<%=require('./images/logo-white.svg')%>">
+    </header>
+    <main class="content">
+      <section class="profile">
+        <img class="profile__avatar" title="Аватар" src="<%=require('./images/avatar.jpg')%>" alt="Аватар">
+        <div class="profile__info">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <p class="profile__job">Исследователь океана</p>
+          <button class="profile__edit-button" title="Редактировать профиль" type="button"></button>
+        </div>
+        <button class="profile__add-button" title="Добавить профиль" type="button"></button>
+      </section>
+      <section class="elements">
+        <!--Контейнер карточек-->
+        <ul class="elements__list"></ul>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
+    </footer>
+    <!--Попап редактирования профиля-->
+    <div class="popup popup_editProfile">
+      <div class="popup__container">
+        <button class="popup__close-button popup_editProfile__close-button" id="popupEditProfileCloseButton" type="button"></button>
+        <form class="popup__form popup__form_editProfile" name="editProfile" novalidate>
+          <fieldset class="popup__fieldset">
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <label class="popup__form-field">
+              <input class="popup__input popup__name-input" id="name__input" name="name" placeholder="Имя" type="text" minlength="2" maxlength="40" required>
+              <span class="popup__input-error name__input-error"></span>
+            </label>
+            <label class="popup__form-field">
+              <input class="popup__input popup__job-input" id="job__input" name="job" placeholder="Профессия" type="text" minlength="2" maxlength="200" required>
+              <span class="popup__input-error job__input-error"></span>
+            </label>
+            <button class="popup__submit-button popup__editProfileSubmit-button" type="submit">Сохранить</button>
+          </fieldset>
+        </form>
+        <div class="popup__overlay"></div>
+      </div>
+    </div>
+    <!--Попап добавления карточки-->
+    <div class="popup popup_addCard">
+      <div class="popup__container">
+        <button class="popup__close-button popup_addCard__close-button" id="popupAddCardCloseButton" type="button"></button>
+        <form class="popup__form popup__form_addCard" name="newCard" novalidate>
+          <fieldset class="popup__fieldset">
+            <h2 class="popup__title">Новое место</h2>
+            <label class="popup__form-field">
+              <input class="popup__input popup__placeName-input" id="place__input" name="placeName" placeholder="Название карточки" type="text" minlength="2" maxlength="30" required>
+              <span class="popup__input-error place__input-error"></span>
+            </label>
+            <label class="popup__form-field">
+              <input class="popup__input popup__placeLink-input" id="link__input" name="placeLink" placeholder="Ссылка на картинку" type="url" required>
+              <span class="popup__input-error link__input-error"></span>
+            </label>
+            <button class="popup__submit-button popup__addCardSubmit-button" type="submit">Отправить</button>
+          </fieldset>
+        </form>
+        <div class="popup__overlay"></div>
+      </div>
+    </div>
+    <!--Попап открытия фото-->
+    <div class="popup popup_openImage">
+      <div class="popup__fullscreen">
+        <div class="popup__image-description">
+          <img class="popup__image" src="#" alt="Фото" />
+          <p class="popup__image-text"></p>
+          <button class="popup__close-button popup_OpenImage__close-button" type="button"></button>
+        </div>
+      </div>
+      <div class="popup__overlay"></div>
+    </div>
+    <ul class="elements__list"></ul>
+    <!--Шаблон карточки-->
+    <template class="card-template">
+      <li class="element">
+        <img class="element__picture" src="#" alt="Фото" />
+        <button class="element__trash-button" type="button"></button>
+        <div class="element__container">
+          <h2 class="element__text"></h2>
+          <button class="element__like-button" type="button"></button>
+        </div>
+      </li>
+    </template>
+    <script type="module" src="./index.js"></script>
+    <!--Конец-->
+  </body>
+</html>
