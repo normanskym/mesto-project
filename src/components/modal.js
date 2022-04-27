@@ -10,15 +10,18 @@ import {
 } from "./utils.js";
 import { newCards } from './../index.js';
 
+//Закрытие попапа на escape
+function closePopupToEsc (evt) {
+  if (evt.key === 'Escape') {
+    closePopup(document.querySelector('.popup_opened'));
+  }
+}
+
 //Открытие попапа
 export function openPopup(popup) {
     popup.classList.add('popup_opened');
   
-    document.addEventListener('keydown', function closePopupToEsc (evt) {
-      if (evt.key === 'Escape') {
-        popup.classList.remove('popup_opened');
-      }
-    });
+    document.addEventListener('keydown', closePopupToEsc);
   
     const popupOverlay = popup.querySelector('.popup__overlay');
     popupOverlay.addEventListener('click', function closePopupToClickOverlay () {
@@ -29,6 +32,8 @@ export function openPopup(popup) {
 //Закрытие попапа
 export function closePopup(popup) {
     popup.classList.remove('popup_opened');
+
+    document.removeEventListener('keydown', closePopupToEsc);
 }
 
 //Сабмит попапа редактирования профиля

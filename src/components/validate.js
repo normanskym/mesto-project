@@ -1,5 +1,5 @@
 //Проверка наличия невалидных инпутов для деактивации кнопки сабмита
-function hasInvalidInput (inputList) {
+function checkInvalidInput (inputList) {
     return inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     });
@@ -7,7 +7,7 @@ function hasInvalidInput (inputList) {
   
 //Деактивация кнопки сабмита
 function toggleButtonState (inputList, buttonElement) {
-    if (hasInvalidInput(inputList)) {
+    if (checkInvalidInput(inputList)) {
       buttonElement.classList.add('popup__submit-button_inactive');
       buttonElement.setAttribute('disabled', '');
     } else {
