@@ -2,12 +2,15 @@
 export const profileName = document.querySelector('.profile__name');
 export const profileJob = document.querySelector('.profile__job');
 
+//Формы
+export const popupEditProfileSubmit = document.querySelector('.popup__form_editProfile');
+export const popupAddCardSubmit = document.querySelector('.popup__form_addCard');
+
 //Кнопки
 export const profileEditButton = document.querySelector('.profile__edit-button');
 export const profileAddButton = document.querySelector('.profile__add-button');
 
-export const popupEditProfileSubmit = document.querySelector('.popup__form_editProfile');
-export const popupAddCardSubmit = document.querySelector('.popup__form_addCard');
+export const popupAddCardSubmitButton = document.querySelector('.popup__addCardSubmit-button');
 
 export const popupEditProfileCloseButton = document.querySelector('.popup_editProfile__close-button');
 export const popupAddCardCloseButton = document.querySelector('.popup_addCard__close-button');

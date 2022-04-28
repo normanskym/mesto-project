@@ -15,11 +15,11 @@ import {
   nameInput,
   jobInput,
   elementsList
-} from './components/utils.js';
+} from './components/constants.js';
 
 import { initialCards, createCard } from './components/card.js';
-import { openPopup, closePopup, editProfileSubmitHandler, addCardSubmitHandler } from './components/modal.js';
-import { enableValidation } from './components/validate.js';
+import { openPopup, closePopup, handleProfileSubmit, handleCardSubmit } from './components/modal.js';
+import { enableValidation, settings } from './components/validate.js';
 
 //Инициализация карточек
 export const newCards = initialCards.map((place) => {
@@ -27,17 +27,19 @@ export const newCards = initialCards.map((place) => {
 });
 elementsList.append(...newCards);
 
-nameInput.value = profileName.textContent;
-jobInput.value = profileJob.textContent;
-
 //Обработчики событий
-profileEditButton.addEventListener('click', () => openPopup(popupEditProfile));
-popupEditProfileSubmit.addEventListener('submit', editProfileSubmitHandler);
+profileEditButton.addEventListener('click', () => {
+  openPopup(popupEditProfile);
+
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
+});
+popupEditProfileSubmit.addEventListener('submit', handleProfileSubmit);
 profileAddButton.addEventListener('click', () => openPopup(popupAddCard));
-popupAddCardSubmit.addEventListener('submit', addCardSubmitHandler);
+popupAddCardSubmit.addEventListener('submit', handleCardSubmit);
 popupAddCardCloseButton.addEventListener('click', () => closePopup(popupAddCard));
 popupEditProfileCloseButton.addEventListener('click', () => closePopup(popupEditProfile));
 popupOpenImageCloseButton.addEventListener('click', () => closePopup(popupImage));
 
 //Активация валидации
-enableValidation();
+enableValidation(settings);

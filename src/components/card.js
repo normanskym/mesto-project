@@ -1,4 +1,4 @@
-import { popupImage, popupImagePic, popupImageText, cardTemplate } from "./utils.js";
+import { popupImage, popupImagePic, popupImageText, cardTemplate } from "./constants.js";
 import { openPopup } from "./modal.js";
 
 //Карточки "в коробке"
@@ -46,6 +46,7 @@ export function createCard(name, link) {
     cardImg.addEventListener('click', () => {
       openPopup(popupImage);
       popupImagePic.setAttribute('src', link);
+      popupImagePic.setAttribute('alt', name);
       popupImageText.textContent = name;
     });
   
@@ -54,7 +55,7 @@ export function createCard(name, link) {
 
 //Лайк карточки
 function likeCard(event) {
-    event.target.closest('.element__like-button').classList.toggle('element__like-button_active');
+    event.target.classList.toggle('element__like-button_active');
 }
 
 //Удаление карточки
