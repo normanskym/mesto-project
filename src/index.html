@@ -15,16 +15,19 @@
     </header>
     <main class="content">
       <section class="profile">
-        <img class="profile__avatar" title="Аватар" src="<%=require('./images/avatar.jpg')%>" alt="Аватар пользователя">
+        <div class="profile__avatar-edit">
+          <img class="profile__avatar" title="Аватар" src="<%=require('./images/avatar.jpg')%>" alt="Аватар пользователя">
+          <button title="Загрузить новый аватар" class="profile__avatar-edit-button" type="button"></button>
+        </div>
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <p class="profile__job">Исследователь океана</p>
           <button class="profile__edit-button" title="Редактировать профиль" type="button"></button>
         </div>
-        <button class="profile__add-button" title="Добавить профиль" type="button"></button>
+        <button class="profile__addCard-button" title="Добавить карточку" type="button"></button>
       </section>
+      <!--Контейнер карточек-->
       <section class="elements">
-        <!--Контейнер карточек-->
         <ul class="elements__list"></ul>
       </section>
     </main>
@@ -85,14 +88,34 @@
       <div class="popup__overlay"></div>
     </div>
     <ul class="elements__list"></ul>
+    <!--Попап редактирования аватара-->
+    <div class="popup popup_editAvatar">
+      <div class="popup__container">
+        <button class="popup__close-button popup_editAvatar__close-button" id="popupEditAvatarCloseButton" type="button"></button>
+        <form class="popup__form popup__form_editAvatar" name="editAvatar" novalidate>
+          <fieldset class="popup__fieldset">
+            <p class="popup__title">Обновить аватар</p>
+            <label class="popup__form-field">
+              <input class="popup__input popup__avatarLink-input" name="avatar" id="avatarLink-input" required placeholder="Ссылка на изображение" type="url">
+              <span class="popup__input-error avatarLink-input-error"></span>
+            </label>
+            <button class="popup__submit-button popup__editAvatarSubmit-button" type="submit">Сохранить</button>
+          </fieldset>
+        </form>
+        <div class="popup__overlay"></div>
+      </div>
+    </div>
     <!--Шаблон карточки-->
     <template class="card-template">
       <li class="element">
         <img class="element__picture" src="#" alt="Фото" />
-        <button class="element__trash-button" type="button"></button>
+        <button class="element__trash-button" type="button" id="removeCardBtn"></button>
         <div class="element__container">
           <h2 class="element__text"></h2>
-          <button class="element__like-button" type="button"></button>
+          <div class="element__like-container">
+            <button class="element__like-button" type="button"></button>
+            <span class="element__like-counter"></span>
+          </div>
         </div>
       </li>
     </template>
