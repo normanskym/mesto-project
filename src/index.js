@@ -26,32 +26,28 @@ import { getUser, getCards } from "./components/api.js";
 //Активация валидации
 enableValidation(settings);
 
-//Загрузка карточек с сервера
-getUser()
-  .then((user) => {
+//Загрузка карточек И пользователя
+Promise.all([getUser(), getCards()])
+  .then(([user, cards]) => {
+    //установка данных пользователя
     profileName.textContent = user.name;
     profileJob.textContent = user.about;
     profileAvatar.setAttribute("src", user.avatar);
-    getCards()
-      .then((cards) => {
-        cards.forEach(function (card) {
-          const newCards = createCard(
-            card.link,
-            card.name,
-            card.likes.length,
-            user._id,
-            card.owner._id,
-            card._id,
-            card.likes
-          );
-          elementsList.append(newCards);
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    //отрисовка карточек
+    cards.forEach(function (card) {
+      const newCards = createCard(
+        card.link,
+        card.name,
+        card.likes.length,
+        user._id,
+        card.owner._id,
+        card._id,
+        card.likes
+      );
+      elementsList.append(newCards);
+    });
   })
-  .catch((err) => {
+  .catch(err => {
     console.log(err);
   });
 
@@ -83,9 +79,11 @@ profileEditButton.addEventListener('click', function (evt) {
 profileAvatarButton.addEventListener('click', function (evt) {
   evt.stopPropagation();
   openPopup(popupEditAvatar);
+  enableValidation(settings);
 });
 
 profileAddCardButton.addEventListener('click', function (evt) {
   evt.stopPropagation();
   openPopup(popupAddCard);
+  enableValidation(settings);
 });
