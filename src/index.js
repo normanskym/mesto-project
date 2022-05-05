@@ -19,7 +19,7 @@ import {
 } from './components/constants.js';
 
 import { createCard } from './components/card.js';
-import { openPopup, closePopup, handleProfileSubmit, handleCardSubmit, handleAvatarSubmit } from './components/modal.js';
+import { openPopup, closePopup, handleProfileSubmit, handleCardSubmit, handleAvatarSubmit, deactivateSubmit } from './components/modal.js';
 import { enableValidation, settings } from './components/validate.js';
 import { getUser, getCards } from "./components/api.js";
 
@@ -79,11 +79,11 @@ profileEditButton.addEventListener('click', function (evt) {
 profileAvatarButton.addEventListener('click', function (evt) {
   evt.stopPropagation();
   openPopup(popupEditAvatar);
-  enableValidation(settings);
+  deactivateSubmit(popupEditAvatar);
 });
 
 profileAddCardButton.addEventListener('click', function (evt) {
   evt.stopPropagation();
   openPopup(popupAddCard);
-  enableValidation(settings);
+  deactivateSubmit(popupAddCard);
 });

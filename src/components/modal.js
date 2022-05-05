@@ -28,6 +28,12 @@ function closePopupToEsc (evt) {
   }
 }
 
+//Деактивация сабмита
+export function deactivateSubmit(form) {
+  form.querySelector('.popup__submit-button').classList.add('popup__submit-button_inactive');
+  form.querySelector('.popup__submit-button').setAttribute('disabled', '');
+}
+
 //Открытие попапа
 export function openPopup(popup) {
     popup.classList.add('popup_opened');
