@@ -56,7 +56,7 @@ export class Card {
         .then((res) => {
           this._data = res;
           this._likeCounter.textContent = res.likes.length;
-          this._likeButton.classList.add("elements__like-button_active");
+          this._likeButton.classList.add("element__like-button_active");
         })
         .catch((err) => console.log(err));
     } else {
