@@ -1,89 +1,127 @@
 import './pages/index.css';
+
+import { api } from './components/Api';
+import UserInfo from './components/UserInfo';
+import Section from './components/Section';
+import Card from './components/Card';
+import PopupWithForm from './components/PopupWithForm';
+import PopupWithImage from './components/PopupWithImage';
+import FormValidator from './components/FormValidator';
+
 import {
-  profileAvatar,
-  profileName,
-  profileJob,
   profileEditButton,
   profileAddCardButton,
   formEditProfile,
   formAddCard,
   popupEditProfile,
   popupAddCard,
-  nameInput,
-  jobInput,
-  elementsList,
   profileAvatarButton,
   popupEditAvatar,
-  formEditAvatar,
-  popups
-} from './components/constants.js';
+  formEditAvatar
+} from './components/constants';
 
-import { createCard } from './components/card.js';
-import { openPopup, closePopup, handleProfileSubmit, handleCardSubmit, handleAvatarSubmit, deactivateSubmit } from './components/modal.js';
-import { enableValidation, settings } from './components/validate.js';
-import { getUser, getCards } from "./components/api.js";
+let user;
 
-//Активация валидации
-enableValidation(settings);
+const userInfo = new UserInfo({
+  profileName: '.profile__name',
+  profileJob: '.profile__job',
+  profileAvatar: '.profile__avatar'
+});
 
-//Загрузка карточек И пользователя
-Promise.all([getUser(), getCards()])
-  .then(([user, cards]) => {
-    //установка данных пользователя
-    profileName.textContent = user.name;
-    profileJob.textContent = user.about;
-    profileAvatar.setAttribute("src", user.avatar);
-    //отрисовка карточек
-    cards.forEach(function (card) {
-      const newCards = createCard(
-        card.link,
-        card.name,
-        card.likes.length,
-        user._id,
-        card.owner._id,
-        card._id,
-        card.likes
-      );
-      elementsList.append(newCards);
-    });
+//создание экземпляра класса Section
+
+//создание экземпляра класса popupWithImage
+
+//валидация
+
+//попап редактирования профиля
+const popupFormEditProfile = new PopupWithForm(popupEditProfile, formEditProfile,
+  function handleFormSubmit(data) {
+    popupFormEditProfile.renderLoading(true);
+    api.updateUserProfile(data.name, data.about)
+      .then((user) => {
+        userInfo.setUserInfo(user);
+        popupFormEditProfile.close();
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {
+        popupFormEditProfile.renderLoading(false);
+      })
+  }
+)
+
+//попап редактирования аватара
+const popupFormEditAvatar = new PopupWithForm(popupEditAvatar, formEditAvatar,
+  function handleFormSubmit(data) {
+    popupFormEditAvatar.renderLoading(true);
+    api.updateUserAvatar(data.link)
+      .then((user) => {
+        userInfo.setUserInfo(user);
+        popupFormEditAvatar.close();
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {
+        popupFormEditAvatar.renderLoading(false);
+      })
+  }
+)
+
+//попап добавления карточки
+const popupFormAddCard = new PopupWithForm(popupAddCard, formAddCard,
+  function handleFormSubmit(data) {
+    popupFormAddCard.renderLoading(true);
+    api.addNewCard(data)
+      .then((card) => {
+        cardList.addItem(card); //где cardList - название объявленного экземпляра класса Section
+        popupFormAddCard.close();
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {
+        popupFormAddCard.renderLoading(false);
+      })
+  }
+)
+
+//получение профиля и карточек с API
+Promise.all([api.getUser(), api.getInitialCards()])
+  .then(([userData, cards]) => {
+    user = userData;
+    userInfo.setUserInfo(user);
+    cardList.renderItems(cards); //где cardList - название объявленного экземпляра класса Section
   })
-  .catch(err => {
+  .catch((err) => {
     console.log(err);
   });
 
-  //Обработчики закрытия попапов
-popups.forEach((popup) => {
-  popup.addEventListener("mousedown", function (evt) {
-    if (evt.target.classList.contains("popup_opened")) {
-      closePopup(popup);
-    }
-    if (evt.target.classList.contains("popup__close-button")) {
-      closePopup(popup);
-    }
-  });
-});
+//создание карточек
+function renderCard(item) {
+  const newCard = new Card({ selector: '.card-template' }, item, api, user, handleCardClick).createCard();
+  return newCard;
+} //функция отображения карточек для использования при создании экземпляра класса Section
 
-//Обработчики сабмитов форм
-formEditProfile.addEventListener('submit', handleProfileSubmit);
-formAddCard.addEventListener('submit', handleCardSubmit);
-formEditAvatar.addEventListener('submit', handleAvatarSubmit);
+function handleCardClick(name, link) {
+  popupWithImage.open(link, name);  //где popupWithImage - название объявленного экземпляра класса PopupWithImage
+}
 
-//Обработчики кнопок
-profileEditButton.addEventListener('click', function (evt) {
-  evt.stopPropagation();
-  openPopup(popupEditProfile);
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileJob.textContent;
-});
+//обработчики событий кнопок
+profileAvatarButton.addEventListener('click', () => {
+  popupFormEditAvatar.open();
+  //сброс валидации
+})
 
-profileAvatarButton.addEventListener('click', function (evt) {
-  evt.stopPropagation();
-  openPopup(popupEditAvatar);
-  deactivateSubmit(popupEditAvatar);
-});
+profileEditButton.addEventListener('click', () => {
+  popupFormEditProfile.open();
+  popupFormEditProfile.setInputValues(userInfo.getUserInfo());
+  //сброс валидации
+})
 
-profileAddCardButton.addEventListener('click', function (evt) {
-  evt.stopPropagation();
-  openPopup(popupAddCard);
-  deactivateSubmit(popupAddCard);
-});
+profileAddCardButton.addEventListener('click', () => {
+  popupFormAddCard.open();
+  //сброс валидации
+})
+
+//обработчики событий попапов
+popupFormEditProfile.setEventListeners();
+popupFormEditAvatar.setEventListeners();
+popupFormAddCard.setEventListeners();
+//слушатели popupWithImage - экземпляра класса PopupWithImage

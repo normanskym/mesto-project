@@ -1,25 +1,24 @@
+import { data } from "autoprefixer";
+
 export default class UserInfo {
-    constructor({ profileName, profileJob, profileId, profileAvatar }) {
-      this._profileId = profileId;
-      this._profileAvatar = profileAvatar;
-      this._name = profileName;
-      this._job = profileJob;
+    constructor({ profileName, profileJob, profileAvatar }) {
+      this._name = document.querySelector(profileName);
+      this._job = document.querySelector(profileJob);
+      this._avatar = document.querySelector(profileAvatar);
     }
   
     getUserInfo() {
       const userInfo = {
         name: this._name.textContent,
         job: this._job.textContent,
+        avatar: this._avatar.src
       };
       return userInfo;
     }
   
     setUserInfo(userInfo) {
-      this._name.textContent = userInfo.name;
-      this._job.textContent = userInfo.job;
-    }
-  
-    setUserAvatar(data) {
-      this._profileAvatar.src = data.avatar;
+      this._name.textContent = data.name;
+      this._job.textContent = data.about;
+      this._avatar.src = data.avatar;
     }
   }

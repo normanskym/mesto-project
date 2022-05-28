@@ -31,13 +31,13 @@ export default class Api {
   }
 
   //Изменение данных профиля
-  updateUserProfile (data) {
+  updateUserProfile (name, about) {
     return fetch(`${this._baseUrl}users/me`, {
       method: "PATCH",
       headers: this.headers,
       body: JSON.stringify({
-        name: data.name,
-        about: data.job,
+        name: name,
+        about: about,
       })
     }).then((res) => this._checkResult(res));
   }
@@ -90,7 +90,7 @@ export default class Api {
   }
 }
 
-const api = new Api({
+export const api = new Api({
   baseUrl: 'https://nomoreparties.co/v1/plus-cohort-9',
   headers: {
     authorization: '610e06c9-39c0-4d40-8bb2-d76533a4e398',
