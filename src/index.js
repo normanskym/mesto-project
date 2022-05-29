@@ -17,7 +17,8 @@ import {
   popupAddCard,
   profileAvatarButton,
   popupEditAvatar,
-  formEditAvatar
+  formEditAvatar,
+  settings
 } from './components/constants';
 
 let user;
@@ -29,10 +30,29 @@ const userInfo = new UserInfo({
 });
 
 //создание экземпляра класса Section
+const cardList = new Section({
+  renderer: (item) => renderCard(item)
+  },
+  '.elements__list'
+  );
 
 //создание экземпляра класса popupWithImage
+const popupWithImage = new PopupWithImage(popupImage);
 
 //валидация
+const formValidators = {}
+
+const enableValidation = (settings) => {
+  const formList = Array.from(document.querySelectorAll(settings.formSelector));
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(settings, formElement);
+    const formName = formElement.getAttribute('name');
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  });
+}
+
+enableValidation(settings);
 
 //попап редактирования профиля
 const popupFormEditProfile = new PopupWithForm(popupEditProfile, formEditProfile,
@@ -72,7 +92,7 @@ const popupFormAddCard = new PopupWithForm(popupAddCard, formAddCard,
     popupFormAddCard.renderLoading(true);
     api.addNewCard(data)
       .then((card) => {
-        cardList.addItem(card); //где cardList - название объявленного экземпляра класса Section
+        cardList.addItem(card); 
         popupFormAddCard.close();
       })
       .catch((err) => console.log(err))
@@ -87,7 +107,7 @@ Promise.all([api.getUser(), api.getInitialCards()])
   .then(([userData, cards]) => {
     user = userData;
     userInfo.setUserInfo(user);
-    cardList.renderItems(cards); //где cardList - название объявленного экземпляра класса Section
+    cardList.renderItems(cards); 
   })
   .catch((err) => {
     console.log(err);
@@ -97,31 +117,31 @@ Promise.all([api.getUser(), api.getInitialCards()])
 function renderCard(item) {
   const newCard = new Card({ selector: '.card-template' }, item, api, user, handleCardClick).createCard();
   return newCard;
-} //функция отображения карточек для использования при создании экземпляра класса Section
+} 
 
 function handleCardClick(name, link) {
-  popupWithImage.open(link, name);  //где popupWithImage - название объявленного экземпляра класса PopupWithImage
+  popupWithImage.open(link, name);
 }
 
 //обработчики событий кнопок
 profileAvatarButton.addEventListener('click', () => {
   popupFormEditAvatar.open();
-  //сброс валидации
+  formValidators['editAvatar'].resetFormValidation();
 })
 
 profileEditButton.addEventListener('click', () => {
   popupFormEditProfile.open();
   popupFormEditProfile.setInputValues(userInfo.getUserInfo());
-  //сброс валидации
+  formValidators['editProfile'].resetFormValidation();
 })
 
 profileAddCardButton.addEventListener('click', () => {
   popupFormAddCard.open();
-  //сброс валидации
+  formValidators['newCard'].resetFormValidation();
 })
 
 //обработчики событий попапов
 popupFormEditProfile.setEventListeners();
 popupFormEditAvatar.setEventListeners();
 popupFormAddCard.setEventListeners();
-//слушатели popupWithImage - экземпляра класса PopupWithImage
+popupWithImage.setEventListeners();
