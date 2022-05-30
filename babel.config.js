@@ -10,8 +10,14 @@ const presets = [
   
       // использовать полифиллы для браузеров из свойства target
       // по умолчанию babel использует поллифиллы библиотеки core-js
-      useBuiltIns: "entry"
+      useBuiltIns: "entry",
     }]
   ];
-  
-  module.exports = { presets };
+
+  module.exports = { presets,
+    "plugins": [
+      ["transform-runtime", {
+        "regenerator": true
+      }]
+    ]
+  };

@@ -1,6 +1,6 @@
 import './pages/index.css';
 
-import { Api } from './components/api';
+import { api } from './components/api';
 import UserInfo from './components/UserInfo';
 import Section from './components/Section';
 import Card from './components/card';
