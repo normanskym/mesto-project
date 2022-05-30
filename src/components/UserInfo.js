@@ -1,4 +1,4 @@
-import { data } from "autoprefixer";
+//import { data } from "autoprefixer";
 
 export default class UserInfo {
     constructor({ profileName, profileJob, profileAvatar }) {
@@ -16,7 +16,7 @@ export default class UserInfo {
       return userInfo;
     }
   
-    setUserInfo(userInfo) {
+    setUserInfo(data) {
       this._name.textContent = data.name;
       this._job.textContent = data.about;
       this._avatar.src = data.avatar;

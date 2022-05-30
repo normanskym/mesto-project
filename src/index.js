@@ -1,9 +1,9 @@
 import './pages/index.css';
 
-import { api } from './components/api';
+import { api } from './components/Api';
 import UserInfo from './components/UserInfo';
 import Section from './components/Section';
-import Card from './components/card';
+import Card from './components/Card';
 import PopupWithForm from './components/PopupWithForm';
 import PopupWithImage from './components/PopupWithImage';
 import FormValidator from './components/FormValidator';
