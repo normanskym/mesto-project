@@ -14,7 +14,7 @@ const presets = [
     }]
   ];
 
-  module.exports = { presets,
+  module.export = { presets,
     "plugins": [
       [
         "@babel/plugin-transform-runtime",

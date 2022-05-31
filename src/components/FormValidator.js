@@ -44,19 +44,26 @@ export default class FormValidator {
 
   _checkInputValidity (inputElement) {
     if (!inputElement.validity.valid) {
-      this._showInputError(formElement, inputElement, inputElement.validationMessage, settings);
+      this._showInputError(inputElement, inputElement.validationMessage);
     } else {
-      this._hideInputError(formElement, inputElement, settings);
+      this._hideInputError(inputElement);
     }
   }
 
   _setEventListeners () {
     this._toggleButtonState();
     this._inputList.forEach((inputElement) => {
-      inputElement.addEventListener('input', () => {
+      inputElement.addEventListener('keyup', () => {
         this._checkInputValidity(inputElement);
         this._toggleButtonState();
       });
+    });
+  }
+
+  resetFormValidation() {
+    this._toggleButtonState();
+    this._inputList.forEach((input) => {
+      this._hideInputError(input)
     });
   }
 

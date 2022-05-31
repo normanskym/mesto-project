@@ -39,7 +39,7 @@ export default class Card {
       this._likeCounter.textContent = '0';
     }
 
-    this._checkMyLike(this.likes);
+    this._checkMyLike(this._likes);
     this._setEventListeners();
 
     if (this._owner !== this._userID) {

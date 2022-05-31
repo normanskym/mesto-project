@@ -1,12 +1,13 @@
 import './pages/index.css';
 
-import { api } from './components/Api';
-import UserInfo from './components/UserInfo';
-import Section from './components/Section';
-import Card from './components/Card';
-import PopupWithForm from './components/PopupWithForm';
-import PopupWithImage from './components/PopupWithImage';
-import FormValidator from './components/FormValidator';
+import Api from './components/Api.js';
+import { api } from './components/Api.js';
+import UserInfo from './components/UserInfo.js';
+import Section from './components/Section.js';
+import Card from './components/Card.js';
+import PopupWithForm from './components/PopupWithForm.js';
+import PopupWithImage from './components/PopupWithImage.js';
+import FormValidator from './components/FormValidator.js';
 
 import {
   profileEditButton,
@@ -15,9 +16,11 @@ import {
   formAddCard,
   popupEditProfile,
   popupAddCard,
+  popupImage,
   profileAvatarButton,
   popupEditAvatar,
   formEditAvatar,
+  elementsList,
   settings
 } from './components/constants';
 
@@ -30,11 +33,19 @@ const userInfo = new UserInfo({
 });
 
 //создание экземпляра класса Section
-const cardList = new Section({
+/*const cardList = new Section({
   renderer: (item) => renderCard(item)
   },
   '.elements__list'
-  );
+  );*/
+const cardList = new Section(
+  {
+    renderItems: (data) => {
+      cardList.addItem(renderCard(data));
+    },
+  },
+  elementsList
+);
 
 //создание экземпляра класса popupWithImage
 const popupWithImage = new PopupWithImage(popupImage);
@@ -58,7 +69,7 @@ enableValidation(settings);
 const popupFormEditProfile = new PopupWithForm(popupEditProfile, formEditProfile,
   function handleFormSubmit(data) {
     popupFormEditProfile.renderLoading(true);
-    api.updateUserProfile(data.name, data.about)
+    api.updateUserProfile(data.name, data.job)
       .then((user) => {
         userInfo.setUserInfo(user);
         popupFormEditProfile.close();
@@ -91,8 +102,8 @@ const popupFormAddCard = new PopupWithForm(popupAddCard, formAddCard,
   function handleFormSubmit(data) {
     popupFormAddCard.renderLoading(true);
     api.addNewCard(data)
-      .then((card) => {
-        cardList.addItem(card); 
+      .then((res) => {
+        cardList.addItem(renderCard(res), true);
         popupFormAddCard.close();
       })
       .catch((err) => console.log(err))
