@@ -1,5 +1,3 @@
-//import { data } from "autoprefixer";
-
 export default class UserInfo {
     constructor({ profileName, profileJob, profileAvatar }) {
       this._name = document.querySelector(profileName);

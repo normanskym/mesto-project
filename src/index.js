@@ -1,6 +1,6 @@
 import './pages/index.css';
 
-import Api from './components/Api.js';
+
 import { api } from './components/Api.js';
 import UserInfo from './components/UserInfo.js';
 import Section from './components/Section.js';
@@ -33,11 +33,6 @@ const userInfo = new UserInfo({
 });
 
 //создание экземпляра класса Section
-/*const cardList = new Section({
-  renderer: (item) => renderCard(item)
-  },
-  '.elements__list'
-  );*/
 const cardList = new Section(
   {
     renderItems: (data) => {
