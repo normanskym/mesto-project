@@ -22,7 +22,7 @@ import {
   formEditAvatar,
   elementsList,
   settings
-} from './components/constants';
+} from './utils/constants';
 
 let user;
 
