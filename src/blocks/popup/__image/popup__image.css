@@ -7,7 +7,7 @@
     margin: 0;
     color: white;
     background: rgb(115, 160, 223);
-    background: url("../../../images/Logo-white.svg"), linear-gradient(180deg, #01b7ffe7 0%, #0178ffea 50%, #013cffe7 100%);
+    background: url("../../../images/logo-white.svg"), linear-gradient(180deg, #01b7ffe7 0%, #0178ffea 50%, #013cffe7 100%);
     background-size: 50%, contain;
     background-repeat: no-repeat;
     background-position: center;
